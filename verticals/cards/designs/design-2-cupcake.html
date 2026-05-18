@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Quicksand:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f0eb;
+  }
+
+  .card {
+    width: 340px;
+    height: 440px;
+    background: linear-gradient(170deg, #E8F8F5 0%, #FFF8E7 50%, #FFF0F5 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .typography-top {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .happy {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 48px;
+    background: linear-gradient(135deg, #FF6B6B, #FF8C42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  /* Cupcake illustration */
+  .cupcake-wrap {
+    position: relative;
+    width: 130px;
+    height: 140px;
+    z-index: 2;
+    margin: 8px 0;
+  }
+
+  .frosting {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    width: 100px;
+    height: 55px;
+    background: linear-gradient(135deg, #A06CD5, #C792EA);
+    border-radius: 50px 50px 8px 8px;
+    z-index: 3;
+  }
+
+  .frosting::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 18px;
+    width: 65px;
+    height: 35px;
+    background: linear-gradient(135deg, #FF6B9D, #FF8EC7);
+    border-radius: 35px 35px 8px 8px;
+    z-index: 4;
+  }
+
+  .frosting::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 30px;
+    width: 40px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.5);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .candle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 30px;
+    background: linear-gradient(to right, #4ECDC4, #45B7AA, #4ECDC4);
+    border-radius: 2px;
+    z-index: 5;
+  }
+
+  .flame {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 15px;
+    background: linear-gradient(to top, #FF8C42, #FFE66D, #FFFBE6);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    z-index: 6;
+  }
+
+  .wrapper {
+    position: absolute;
+    bottom: 15px;
+    left: 17px;
+    width: 96px;
+    height: 55px;
+    background: repeating-linear-gradient(
+      90deg,
+      #FF6B6B 0px, #FF6B6B 12px,
+      #FFE66D 12px, #FFE66D 24px,
+      #6BCB77 24px, #6BCB77 36px,
+      #4ECDC4 36px, #4ECDC4 48px,
+      #A06CD5 48px, #A06CD5 60px
+    );
+    clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+    border-radius: 0 0 6px 6px;
+    z-index: 2;
+  }
+
+  /* Sprinkles */
+  .sprinkle {
+    position: absolute;
+    width: 3px;
+    height: 9px;
+    border-radius: 3px;
+    z-index: 7;
+  }
+  .s1 { background: #FFE66D; top: 24px; left: 32px; transform: rotate(30deg); }
+  .s2 { background: #4ECDC4; top: 18px; left: 55px; transform: rotate(-45deg); }
+  .s3 { background: #FF6B6B; top: 28px; left: 76px; transform: rotate(60deg); }
+  .s4 { background: #6BCB77; top: 35px; left: 42px; transform: rotate(-20deg); }
+  .s5 { background: #FF8C42; top: 16px; left: 68px; transform: rotate(75deg); }
+  .s6 { background: #A06CD5; top: 26px; left: 90px; transform: rotate(-55deg); }
+
+  .typography-bottom {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .birthday {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 48px;
+    background: linear-gradient(135deg, #4ECDC4, #6BCB77, #A06CD5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .to-you {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #FF6B9D;
+    margin-top: 6px;
+  }
+
+  /* Decorative dots */
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .d1 { width: 8px; height: 8px; background: #FFE66D; top: 30px; left: 24px; }
+  .d2 { width: 6px; height: 6px; background: #FF6B6B; top: 55px; right: 30px; }
+  .d3 { width: 10px; height: 10px; background: #4ECDC4; bottom: 55px; left: 18px; }
+  .d4 { width: 5px; height: 5px; background: #A06CD5; bottom: 30px; right: 24px; }
+  .d5 { width: 7px; height: 7px; background: #6BCB77; top: 110px; right: 22px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="dot d1"></div>
+    <div class="dot d2"></div>
+    <div class="dot d3"></div>
+    <div class="dot d4"></div>
+    <div class="dot d5"></div>
+
+    <div class="typography-top">
+      <div class="happy">Happy</div>
+    </div>
+
+    <div class="cupcake-wrap">
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
+      <div class="frosting"></div>
+      <div class="sprinkle s1"></div>
+      <div class="sprinkle s2"></div>
+      <div class="sprinkle s3"></div>
+      <div class="sprinkle s4"></div>
+      <div class="sprinkle s5"></div>
+      <div class="sprinkle s6"></div>
+      <div class="wrapper"></div>
+    </div>
+
+    <div class="typography-bottom">
+      <div class="birthday">Birthday</div>
+      <div class="to-you">to you</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Quicksand:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f0eb;
+  }
+
+  .card {
+    width: 340px;
+    height: 440px;
+    background: linear-gradient(180deg, #FFF9E6 0%, #FFF5F0 50%, #F0FFF4 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  /* Colorful sunburst rays */
+  .sunburst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    z-index: 0;
+  }
+
+  .ray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 2px;
+    transform-origin: left center;
+  }
+
+  .ray:nth-child(1)  { transform: rotate(0deg);   background: linear-gradient(to right, rgba(255,107,107,0.25), transparent); }
+  .ray:nth-child(2)  { transform: rotate(15deg);  background: linear-gradient(to right, rgba(255,140,66,0.25), transparent); }
+  .ray:nth-child(3)  { transform: rotate(30deg);  background: linear-gradient(to right, rgba(255,230,109,0.25), transparent); }
+  .ray:nth-child(4)  { transform: rotate(45deg);  background: linear-gradient(to right, rgba(107,203,119,0.25), transparent); }
+  .ray:nth-child(5)  { transform: rotate(60deg);  background: linear-gradient(to right, rgba(78,205,196,0.25), transparent); }
+  .ray:nth-child(6)  { transform: rotate(75deg);  background: linear-gradient(to right, rgba(160,108,213,0.25), transparent); }
+  .ray:nth-child(7)  { transform: rotate(90deg);  background: linear-gradient(to right, rgba(255,107,157,0.25), transparent); }
+  .ray:nth-child(8)  { transform: rotate(105deg); background: linear-gradient(to right, rgba(255,107,107,0.25), transparent); }
+  .ray:nth-child(9)  { transform: rotate(120deg); background: linear-gradient(to right, rgba(255,140,66,0.25), transparent); }
+  .ray:nth-child(10) { transform: rotate(135deg); background: linear-gradient(to right, rgba(255,230,109,0.25), transparent); }
+  .ray:nth-child(11) { transform: rotate(150deg); background: linear-gradient(to right, rgba(107,203,119,0.25), transparent); }
+  .ray:nth-child(12) { transform: rotate(165deg); background: linear-gradient(to right, rgba(78,205,196,0.25), transparent); }
+  .ray:nth-child(13) { transform: rotate(180deg); background: linear-gradient(to right, rgba(160,108,213,0.25), transparent); }
+  .ray:nth-child(14) { transform: rotate(195deg); background: linear-gradient(to right, rgba(255,107,157,0.25), transparent); }
+  .ray:nth-child(15) { transform: rotate(210deg); background: linear-gradient(to right, rgba(255,107,107,0.25), transparent); }
+  .ray:nth-child(16) { transform: rotate(225deg); background: linear-gradient(to right, rgba(255,140,66,0.25), transparent); }
+  .ray:nth-child(17) { transform: rotate(240deg); background: linear-gradient(to right, rgba(255,230,109,0.25), transparent); }
+  .ray:nth-child(18) { transform: rotate(255deg); background: linear-gradient(to right, rgba(107,203,119,0.25), transparent); }
+  .ray:nth-child(19) { transform: rotate(270deg); background: linear-gradient(to right, rgba(78,205,196,0.25), transparent); }
+  .ray:nth-child(20) { transform: rotate(285deg); background: linear-gradient(to right, rgba(160,108,213,0.25), transparent); }
+  .ray:nth-child(21) { transform: rotate(300deg); background: linear-gradient(to right, rgba(255,107,157,0.25), transparent); }
+  .ray:nth-child(22) { transform: rotate(315deg); background: linear-gradient(to right, rgba(255,107,107,0.25), transparent); }
+  .ray:nth-child(23) { transform: rotate(330deg); background: linear-gradient(to right, rgba(255,140,66,0.25), transparent); }
+  .ray:nth-child(24) { transform: rotate(345deg); background: linear-gradient(to right, rgba(255,230,109,0.25), transparent); }
+
+  /* Warm center glow */
+  .glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(255,230,109,0.25) 0%, rgba(255,140,66,0.12) 40%, transparent 70%);
+    z-index: 0;
+  }
+
+  .typography {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .happy {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #FF6B6B;
+    margin-bottom: 6px;
+  }
+
+  .birthday {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 0.95;
+    letter-spacing: -1px;
+  }
+
+  .birthday-top {
+    display: block;
+    background: linear-gradient(135deg, #FF6B6B, #FF8C42, #FFE66D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .birthday-bottom {
+    font-style: italic;
+    display: block;
+    background: linear-gradient(135deg, #6BCB77, #4ECDC4, #A06CD5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .sun-icon {
+    margin: 18px auto 14px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
+
+  .sun-circle {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #FFE66D, #FF8C42);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px rgba(255,230,109,0.5);
+  }
+
+  .sun-ray-small {
+    position: absolute;
+    width: 3px;
+    height: 9px;
+    border-radius: 2px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center 0;
+  }
+
+  .sr1  { transform: translate(-50%, -25px) rotate(0deg);   background: #FF6B6B; }
+  .sr2  { transform: translate(-50%, -25px) rotate(45deg);  background: #FF8C42; }
+  .sr3  { transform: translate(-50%, -25px) rotate(90deg);  background: #FFE66D; }
+  .sr4  { transform: translate(-50%, -25px) rotate(135deg); background: #6BCB77; }
+  .sr5  { transform: translate(-50%, -25px) rotate(180deg); background: #4ECDC4; }
+  .sr6  { transform: translate(-50%, -25px) rotate(225deg); background: #A06CD5; }
+  .sr7  { transform: translate(-50%, -25px) rotate(270deg); background: #FF6B9D; }
+  .sr8  { transform: translate(-50%, -25px) rotate(315deg); background: #FF6B6B; }
+
+  .wish {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    background: linear-gradient(135deg, #FF8C42, #A06CD5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+  }
+
+  /* Corner accents - rainbow */
+  .corner {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+  }
+  .corner-tl { top: 16px; left: 16px; border-top: 2px solid #FF6B6B; border-left: 2px solid #FF8C42; border-radius: 4px 0 0 0; }
+  .corner-tr { top: 16px; right: 16px; border-top: 2px solid #FFE66D; border-right: 2px solid #6BCB77; border-radius: 0 4px 0 0; }
+  .corner-bl { bottom: 16px; left: 16px; border-bottom: 2px solid #4ECDC4; border-left: 2px solid #A06CD5; border-radius: 0 0 0 4px; }
+  .corner-br { bottom: 16px; right: 16px; border-bottom: 2px solid #FF6B9D; border-right: 2px solid #FF6B6B; border-radius: 0 0 4px 0; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="glow"></div>
+
+    <div class="sunburst">
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+    </div>
+
+    <div class="typography">
+      <div class="happy">Happy</div>
+      <div class="birthday">
+        <span class="birthday-top">Birth</span>
+        <span class="birthday-bottom">day</span>
+      </div>
+
+      <div class="sun-icon">
+        <div class="sun-circle"></div>
+        <div class="sun-ray-small sr1"></div>
+        <div class="sun-ray-small sr2"></div>
+        <div class="sun-ray-small sr3"></div>
+        <div class="sun-ray-small sr4"></div>
+        <div class="sun-ray-small sr5"></div>
+        <div class="sun-ray-small sr6"></div>
+        <div class="sun-ray-small sr7"></div>
+        <div class="sun-ray-small sr8"></div>
+      </div>
+
+      <div class="wish">hope your day is just as bright</div>
+    </div>
+  </div>
+</body>
+</html>

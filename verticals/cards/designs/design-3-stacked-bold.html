@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Quicksand:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f0eb;
+  }
+
+  .card {
+    width: 340px;
+    height: 440px;
+    background: linear-gradient(155deg, #FF6B6B 0%, #FF8C42 20%, #FFE66D 40%, #6BCB77 60%, #4ECDC4 80%, #A06CD5 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* Subtle texture overlay */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .typography {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .line {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 72px;
+    color: #FFFFFF;
+    line-height: 0.88;
+    letter-spacing: -2px;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  }
+
+  .line.italic {
+    font-style: italic;
+  }
+
+  .divider {
+    width: 70px;
+    height: 3px;
+    background: rgba(255,255,255,0.6);
+    margin: 16px auto;
+    border-radius: 2px;
+  }
+
+  .subtitle {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Floating shapes */
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .sh1 { width: 150px; height: 150px; top: -40px; right: -50px; }
+  .sh2 { width: 90px; height: 90px; bottom: 30px; left: -25px; }
+  .sh3 { width: 60px; height: 60px; top: 140px; left: 25px; background: rgba(255,255,255,0.06); }
+  .sh4 { width: 110px; height: 110px; bottom: -30px; right: 30px; background: rgba(255,255,255,0.07); }
+
+  /* Stars/sparkles */
+  .star {
+    position: absolute;
+    color: rgba(255,255,255,0.5);
+    font-size: 16px;
+  }
+  .st1 { top: 45px; left: 30px; font-size: 12px; }
+  .st2 { top: 70px; right: 38px; font-size: 18px; }
+  .st3 { bottom: 80px; left: 45px; font-size: 14px; }
+  .st4 { bottom: 55px; right: 50px; font-size: 10px; }
+  .st5 { top: 175px; right: 28px; font-size: 9px; }
+  .st6 { top: 220px; left: 22px; font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="shape sh1"></div>
+    <div class="shape sh2"></div>
+    <div class="shape sh3"></div>
+    <div class="shape sh4"></div>
+
+    <div class="star st1">&#10022;</div>
+    <div class="star st2">&#10022;</div>
+    <div class="star st3">&#10022;</div>
+    <div class="star st4">&#10022;</div>
+    <div class="star st5">&#10022;</div>
+    <div class="star st6">&#10022;</div>
+
+    <div class="typography">
+      <div class="line">HAPPY</div>
+      <div class="line italic">BIRTH</div>
+      <div class="line">DAY</div>
+      <div class="divider"></div>
+      <div class="subtitle">make a wish</div>
+    </div>
+  </div>
+</body>
+</html>

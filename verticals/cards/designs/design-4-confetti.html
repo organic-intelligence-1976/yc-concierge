@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f0eb;
+  }
+
+  .card {
+    width: 340px;
+    height: 440px;
+    background: linear-gradient(180deg, #FFF8F0 0%, #FFFBF5 50%, #FFF5F8 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  /* Animated confetti */
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(460px) rotate(720deg); opacity: 0; }
+  }
+
+  .confetti {
+    position: absolute;
+    border-radius: 2px;
+    animation: fall linear infinite;
+  }
+
+  /* Rainbow confetti pieces with varied animations */
+  .c1  { width: 7px; height: 14px; background: #FF6B6B; top: -20px; left: 12%; animation-duration: 3.5s; animation-delay: 0s; }
+  .c2  { width: 9px; height: 6px;  background: #4ECDC4; top: -20px; left: 25%; animation-duration: 4.2s; animation-delay: 0.5s; }
+  .c3  { width: 6px; height: 12px; background: #FFE66D; top: -20px; left: 38%; animation-duration: 3.8s; animation-delay: 1s; }
+  .c4  { width: 10px; height: 5px; background: #A06CD5; top: -20px; left: 52%; animation-duration: 4.5s; animation-delay: 0.3s; }
+  .c5  { width: 6px; height: 15px; background: #6BCB77; top: -20px; left: 65%; animation-duration: 3.6s; animation-delay: 0.8s; }
+  .c6  { width: 8px; height: 5px;  background: #FF8C42; top: -20px; left: 78%; animation-duration: 4s; animation-delay: 1.2s; }
+  .c7  { width: 5px; height: 11px; background: #FF6B9D; top: -20px; left: 88%; animation-duration: 4.3s; animation-delay: 0.2s; }
+
+  .c8  { width: 7px; height: 5px;  background: #4ECDC4; top: -20px; left: 8%;  animation-duration: 3.9s; animation-delay: 2s; }
+  .c9  { width: 6px; height: 14px; background: #FF6B6B; top: -20px; left: 20%; animation-duration: 4.4s; animation-delay: 1.5s; }
+  .c10 { width: 9px; height: 5px;  background: #FFE66D; top: -20px; left: 33%; animation-duration: 3.7s; animation-delay: 2.2s; }
+  .c11 { width: 6px; height: 12px; background: #6BCB77; top: -20px; left: 45%; animation-duration: 4.2s; animation-delay: 1.8s; }
+  .c12 { width: 8px; height: 6px;  background: #A06CD5; top: -20px; left: 58%; animation-duration: 3.8s; animation-delay: 2.5s; }
+  .c13 { width: 6px; height: 10px; background: #FF8C42; top: -20px; left: 72%; animation-duration: 4.5s; animation-delay: 1.3s; }
+  .c14 { width: 9px; height: 5px;  background: #FF6B9D; top: -20px; left: 85%; animation-duration: 3.6s; animation-delay: 2.8s; }
+
+  /* Circles */
+  .c15 { width: 8px; height: 8px; border-radius: 50%; background: #6BCB77; top: -20px; left: 55%; animation-duration: 4.4s; animation-delay: 0.7s; }
+  .c16 { width: 7px; height: 7px; border-radius: 50%; background: #FF8C42; top: -20px; left: 68%; animation-duration: 4s; animation-delay: 1.7s; }
+  .c17 { width: 9px; height: 9px; border-radius: 50%; background: #FF6B9D; top: -20px; left: 82%; animation-duration: 4.2s; animation-delay: 2.3s; }
+  .c18 { width: 7px; height: 7px; border-radius: 50%; background: #FFE66D; top: -20px; left: 92%; animation-duration: 3.8s; animation-delay: 3.2s; }
+
+  .typography {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background: rgba(255,255,255,0.88);
+    padding: 18px 14px;
+    border-radius: 12px;
+  }
+
+  .line1 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 26px;
+    color: #FF8C42;
+    margin-bottom: 4px;
+  }
+
+  .line2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+
+  .line2 .h  { color: #FF6B6B; }
+  .line2 .a  { color: #FF8C42; }
+  .line2 .p1 { color: #FFE66D; }
+  .line2 .p2 { color: #6BCB77; }
+  .line2 .y  { color: #4ECDC4; }
+
+  .line3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 54px;
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+
+  .line3 .b  { color: #4ECDC4; }
+  .line3 .i  { color: #6BCB77; }
+  .line3 .r  { color: #FFE66D; }
+  .line3 .t  { color: #FF8C42; }
+  .line3 .h2 { color: #FF6B6B; }
+  .line3 .d  { color: #A06CD5; }
+  .line3 .a2 { color: #FF6B9D; }
+  .line3 .y2 { color: #FF6B6B; }
+
+  .line4 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #A06CD5;
+    margin-top: 12px;
+  }
+
+  .deco-line {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, #FF6B6B, #FFE66D, #6BCB77, #4ECDC4, #A06CD5);
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="confetti c1"></div>
+    <div class="confetti c2"></div>
+    <div class="confetti c3"></div>
+    <div class="confetti c4"></div>
+    <div class="confetti c5"></div>
+    <div class="confetti c6"></div>
+    <div class="confetti c7"></div>
+    <div class="confetti c8"></div>
+    <div class="confetti c9"></div>
+    <div class="confetti c10"></div>
+    <div class="confetti c11"></div>
+    <div class="confetti c12"></div>
+    <div class="confetti c13"></div>
+    <div class="confetti c14"></div>
+    <div class="confetti c15"></div>
+    <div class="confetti c16"></div>
+    <div class="confetti c17"></div>
+    <div class="confetti c18"></div>
+
+    <div class="typography">
+      <div class="line1">it's your</div>
+      <div class="line2">
+        <span class="h">H</span><span class="a">A</span><span class="p1">P</span><span class="p2">P</span><span class="y">Y</span>
+      </div>
+      <div class="line3">
+        <span class="b">B</span><span class="i">i</span><span class="r">r</span><span class="t">t</span><span class="h2">h</span><span class="d">d</span><span class="a2">a</span><span class="y2">y</span>
+      </div>
+      <div class="line4">celebrate you</div>
+      <div class="deco-line"></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+app.yaml
+*.pem
+*.key
+
+# Internal dev journals — contain shared hackathon credentials, agent IDs,
+# and other non-judge-relevant context. Kept locally, not pushed.
+SETUP.md
+hackathon_resources.md
+message_board.md
+
+# Video build artifacts — raw recordings, intermediate ffmpeg outputs.
+# The final demo MP4 in video/out/ IS committed (small enough).
+video/clips/
+video/build/
+video/out/*.jpg
+video/out/check_*.jpg
+video/out/boundary_*.jpg
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code local config
+.claude/

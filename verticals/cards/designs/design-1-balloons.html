@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Quicksand:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f5f0eb;
+  }
+
+  .card {
+    width: 340px;
+    height: 440px;
+    background: linear-gradient(160deg, #FFF5F0 0%, #FFF0E8 40%, #FFEADD 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  /* Balloon cluster */
+  .balloons {
+    position: relative;
+    width: 260px;
+    height: 160px;
+    margin-bottom: 12px;
+  }
+
+  .balloon {
+    position: absolute;
+    width: 48px;
+    height: 60px;
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+  }
+
+  .balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px;
+    height: 18px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.05));
+  }
+
+  .balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: inherit;
+    border-radius: 0 0 50% 50%;
+    clip-path: polygon(20% 0%, 80% 0%, 50% 100%);
+  }
+
+  .balloon .shine {
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 12px;
+    height: 16px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+  }
+
+  /* Rainbow colors for balloons */
+  .b1 { background: #FF6B6B; top: 20px; left: 25px; transform: rotate(-8deg); }
+  .b2 { background: #4ECDC4; top: 8px; left: 80px; transform: rotate(5deg); }
+  .b3 { background: #FFE66D; top: 28px; left: 135px; transform: rotate(-3deg); }
+  .b4 { background: #FF8C42; top: 45px; left: 52px; transform: rotate(7deg); }
+  .b5 { background: #A06CD5; top: 3px; left: 175px; transform: rotate(-10deg); width: 42px; height: 52px; }
+  .b6 { background: #6BCB77; top: 55px; left: 108px; transform: rotate(4deg); width: 44px; height: 55px; }
+  .b7 { background: #FF6B9D; top: 35px; left: 195px; transform: rotate(-5deg); width: 38px; height: 48px; }
+
+  .typography {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .happy {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #FF6B6B;
+    margin-bottom: 2px;
+  }
+
+  .birthday {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 52px;
+    background: linear-gradient(135deg, #FF6B6B, #FF8C42, #FFE66D, #6BCB77, #4ECDC4, #A06CD5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .wish {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #FF8C42;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Colorful confetti dots */
+  .dot {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .d1 { width: 6px; height: 6px; background: #FFE66D; top: 70px; left: 18px; }
+  .d2 { width: 8px; height: 8px; background: #FF6B6B; top: 160px; right: 24px; }
+  .d3 { width: 5px; height: 5px; background: #4ECDC4; top: 300px; left: 30px; }
+  .d4 { width: 9px; height: 9px; background: #A06CD5; top: 360px; right: 36px; }
+  .d5 { width: 6px; height: 6px; background: #6BCB77; top: 60px; right: 42px; }
+  .d6 { width: 7px; height: 7px; background: #FF8C42; bottom: 60px; left: 48px; }
+  .d7 { width: 5px; height: 5px; background: #FF6B9D; bottom: 36px; right: 60px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="dot d1"></div>
+    <div class="dot d2"></div>
+    <div class="dot d3"></div>
+    <div class="dot d4"></div>
+    <div class="dot d5"></div>
+    <div class="dot d6"></div>
+    <div class="dot d7"></div>
+
+    <div class="balloons">
+      <div class="balloon b1"><div class="shine"></div></div>
+      <div class="balloon b2"><div class="shine"></div></div>
+      <div class="balloon b3"><div class="shine"></div></div>
+      <div class="balloon b4"><div class="shine"></div></div>
+      <div class="balloon b5"><div class="shine"></div></div>
+      <div class="balloon b6"><div class="shine"></div></div>
+      <div class="balloon b7"><div class="shine"></div></div>
+    </div>
+
+    <div class="typography">
+      <div class="happy">Happy</div>
+      <div class="birthday">Birthday</div>
+      <div class="wish">wishing you a beautiful day</div>
+    </div>
+  </div>
+</body>
+</html>
