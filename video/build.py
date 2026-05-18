@@ -368,25 +368,27 @@ def main():
         *VCODEC,
         str(pay_clip),
     ])
-    # Now overlay narration 6 starting from the card-view moment (~32s into the trimmed clip)
-    # Combine: pay_clip (silent video) + narration_06 audio, with the audio starting at offset 32s
-    # Actually simpler: keep the pay scene at 42s, layer narration_06 audio starting at 25s (when recipient iMessage hits)
+    # Build the audio track for scene 6:
+    #   0.0s  – narr_05 (Stripe payment narration, ~7s)
+    #   ~26s  – narr_06 (card-view narration, ~15s) — aligns to when card view appears
+    # Mix via two delayed tracks summed with amix.
     pay_clip_full = BUILD / "scene_06_pay_full.mp4"
-    n6_dur = ffprobe_duration(CLIPS / "narr_06_enhanced.m4a")
-    # Pad narration with silence at the start so it begins ~25s in
-    n6_padded = BUILD / "narr_06_padded.m4a"
+    scene_06_audio = BUILD / "scene_06_audio.m4a"
     run([
         "ffmpeg", "-y",
+        "-i", str(CLIPS / "narr_05_enhanced.m4a"),
         "-i", str(CLIPS / "narr_06_enhanced.m4a"),
-        "-af", "adelay=25000|25000",
+        "-filter_complex",
+        "[0:a]adelay=0|0[a0];"
+        "[1:a]adelay=26000|26000[a1];"
+        "[a0][a1]amix=inputs=2:dropout_transition=0:normalize=0",
         *ACODEC,
-        str(n6_padded),
+        str(scene_06_audio),
     ])
-    # Combine pay_clip video with padded narration audio
     run([
         "ffmpeg", "-y",
         "-i", str(pay_clip),
-        "-i", str(n6_padded),
+        "-i", str(scene_06_audio),
         "-c:v", "copy",
         *ACODEC,
         "-shortest",
