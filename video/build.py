@@ -313,14 +313,14 @@ def main():
 
     # Scene 1: Opening title with narration 1
     scenes.append(scene_image_with_audio(
-        open_card, CLIPS / "narr_01_enhanced.m4a",
+        open_card, CLIPS / "narr_01_ai.mp3",
         BUILD / "scene_01_title.mp4",
         fade_in=0.5, fade_out=0.3,
     ))
 
     # Scene 2: iPhone calling screen with narration 2 (setup)
     scenes.append(scene_image_with_audio(
-        iphone_calling_still, CLIPS / "narr_02_enhanced.m4a",
+        iphone_calling_still, CLIPS / "narr_02_ai.mp3",
         BUILD / "scene_02_setup.mp4",
         fade_in=0.3, fade_out=0.3,
     ))
@@ -336,7 +336,7 @@ def main():
     # Scene 4: iMessage recovery screenshot with narration 4
     scenes.append(scene_image_with_audio_kenburns(
         CLIPS / "imessage_recovery.png",
-        CLIPS / "narr_04_enhanced.m4a",
+        CLIPS / "narr_04_ai.mp3",
         BUILD / "scene_04_recovery.mp4",
         zoom_from=1.0, zoom_to=1.25,
         x_from=0.5, y_from=0.4, x_to=0.5, y_to=0.55,
@@ -376,8 +376,8 @@ def main():
     scene_06_audio = BUILD / "scene_06_audio.m4a"
     run([
         "ffmpeg", "-y",
-        "-i", str(CLIPS / "narr_05_enhanced.m4a"),
-        "-i", str(CLIPS / "narr_06_enhanced.m4a"),
+        "-i", str(CLIPS / "narr_05_ai.mp3"),
+        "-i", str(CLIPS / "narr_06_ai.mp3"),
         "-filter_complex",
         "[0:a]adelay=0|0[a0];"
         "[1:a]adelay=26000|26000[a1];"
@@ -398,14 +398,14 @@ def main():
 
     # Scene 9: Sponsor slide with narration 7
     scenes.append(scene_image_with_audio(
-        sponsor_slide, CLIPS / "narr_07_enhanced.m4a",
+        sponsor_slide, CLIPS / "narr_07_ai.mp3",
         BUILD / "scene_09_sponsors.mp4",
         fade_in=0.3, fade_out=0.3,
     ))
 
     # Scene 10: Closing title with narration 8
     scenes.append(scene_image_with_audio(
-        close_card, CLIPS / "narr_08_enhanced.m4a",
+        close_card, CLIPS / "narr_08_ai.mp3",
         BUILD / "scene_10_close.mp4",
         fade_in=0.3, fade_out=0.8,
     ))
